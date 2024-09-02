@@ -66,74 +66,89 @@ class _AddAndEditSampleScreenState extends State<AddAndEditSampleScreen> {
   }
 
   @override
+  void dispose() {
+    for (final controller in _controllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        surfaceTintColor: Colors.white,
-        automaticallyImplyLeading: false,
-        title: FittedBox(
-          fit: BoxFit.scaleDown,
-          child: Text(widget.title),
-        ),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            AddOrChangeSampleImage(
-              initialImagePath: null,
-              onImageChanged: (String? path) {
-                setState(() {
-                  _sampleData[0] = path;
-                });
-              },
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            backgroundColor: Colors.white,
+            foregroundColor: Colors.black,
+            surfaceTintColor: Colors.white,
+            automaticallyImplyLeading: false,
+            title: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(widget.title),
             ),
-            ...List.generate(
-              allHeaders.length,
-              (index) => Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  onTapOutside: (event) =>
-                      FocusManager.instance.primaryFocus?.unfocus(),
-                  controller: _controllers[index],
-                  decoration: InputDecoration(
-                    labelText: allHeaders[index],
-                    labelStyle: const TextStyle(color: Colors.black),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: const BorderSide(
-                        color: Colors.black,
-                        width: 1,
+            centerTitle: true,
+            floating: true,
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                AddOrChangeSampleImage(
+                  initialImagePath: null,
+                  onImageChanged: (String? path) {
+                    setState(() {
+                      _sampleData[0] = path;
+                    });
+                  },
+                ),
+                ...List.generate(
+                  allHeaders.length,
+                  (index) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      onTapOutside: (event) =>
+                          FocusManager.instance.primaryFocus?.unfocus(),
+                      controller: _controllers[index],
+                      decoration: InputDecoration(
+                        labelText: allHeaders[index],
+                        labelStyle: const TextStyle(color: Colors.black),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(
+                            color: Colors.black,
+                            width: 1,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(
+                            color: AppColors.mainColor,
+                            width: 2,
+                          ),
+                        ),
                       ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: const BorderSide(
-                          color: AppColors.mainColor, width: 2),
                     ),
                   ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  AppElevatedButton(
-                    onPressed: _saveSample,
-                    child: widget.buttonFunctionality,
-                    backgroundColor: AppColors.mainColor,
-                    foregroundColor: Colors.white,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      AppElevatedButton(
+                        onPressed: _saveSample,
+                        child: widget.buttonFunctionality,
+                        backgroundColor: AppColors.mainColor,
+                        foregroundColor: Colors.white,
+                      ),
+                      const CancelButton(),
+                    ],
                   ),
-                  const CancelButton(),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

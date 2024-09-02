@@ -23,49 +23,54 @@ class SampleDetailedDescriptionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        surfaceTintColor: Colors.white,
-        leading: const BackButton(),
-        title: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Text('${sample[2]} Detailed Description')),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            InteractiveViewer(
-              child: sample[0].toString().isNotEmpty
-                  ? Image.file(File(sample[0].toString()))
-                  : Image.asset(Assets.logo),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const AllHeadersColumn(),
-                AllDataColumn(sampleIndex: sampleIndex, sample: sample),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            backgroundColor: Colors.white,
+            foregroundColor: Colors.black,
+            surfaceTintColor: Colors.white,
+            leading: const BackButton(),
+            title: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text('${sample[2]} Detailed Description')),
+            floating: true,
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                InteractiveViewer(
+                  child: sample[0].toString().isNotEmpty
+                      ? Image.file(File(sample[0].toString()))
+                      : Image.asset(Assets.logo),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const AllHeadersColumn(),
+                    AllDataColumn(sampleIndex: sampleIndex, sample: sample),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ToEditSampleButton(
+                        category: category,
+                        sampleIndex: sampleIndex,
+                        onSampleUpdated: onSampleUpdated,
+                      ),
+                      DeleteSampleButton(
+                        category: category,
+                        sampleIndex: sampleIndex,
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ToEditSampleButton(
-                    category: category,
-                    sampleIndex: sampleIndex,
-                    onSampleUpdated: onSampleUpdated,
-                  ),
-                  DeleteSampleButton(
-                    category: category,
-                    sampleIndex: sampleIndex,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
