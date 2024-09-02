@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 
-class AppButton extends StatelessWidget {
-  final VoidCallback onPressed;
-  final String child;
+class AppElevatedButton extends StatelessWidget {
   final Size? minimumSize;
   final double? fontSize;
-  const AppButton({
+  final double? elevation;
+  final String child;
+  final VoidCallback onPressed;
+  final Color backgroundColor;
+  final Color foregroundColor;
+  const AppElevatedButton({
     super.key,
-    required this.onPressed,
-    required this.child,
     this.minimumSize,
     this.fontSize,
+    this.elevation,
+    required this.child,
+    required this.onPressed,
+    required this.backgroundColor,
+    required this.foregroundColor,
   });
 
   @override
@@ -18,13 +24,13 @@ class AppButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFFFA7300),
-        foregroundColor: const Color(0xFF000000),
+        backgroundColor: backgroundColor,
+        foregroundColor: foregroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-        elevation: 25,
-        shadowColor: const Color(0xFF000000),
+        elevation: elevation,
+        shadowColor: Colors.black,
         minimumSize: minimumSize,
         splashFactory: InkRipple.splashFactory,
       ),

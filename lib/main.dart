@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:geology_museum_database/screens/main_screen.dart';
+import 'package:geology_museum_database/utils/app_colors.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -13,8 +16,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Geology Museum Database',
       theme: ThemeData(
-        primaryColor: const Color(0xFFFA7300),
-        scaffoldBackgroundColor: const Color(0xFFFFFFFF),
+        primaryColor: AppColors.mainColor,
+        scaffoldBackgroundColor: Colors.white,
       ),
       debugShowCheckedModeBanner: false,
       home: const MainScreen(),
