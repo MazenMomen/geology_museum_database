@@ -18,9 +18,9 @@ class SampleImage extends StatelessWidget {
     return CircleAvatar(
       radius: width * 60 / 390,
       backgroundColor: Colors.white,
-      backgroundImage: _selectedImage != null
-          ? FileImage(_selectedImage)
-          : const AssetImage(Assets.logo),
+      backgroundImage: _selectedImage == null
+          ? const AssetImage(Assets.logo)
+          : FileImage(_selectedImage),
     );
   }
 }
