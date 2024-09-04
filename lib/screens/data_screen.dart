@@ -21,7 +21,6 @@ class _DataScreenState extends State<DataScreen> {
   List<List<dynamic>> samples = [];
   List<List<dynamic>> filteredSamples = [];
   TextEditingController searchController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
@@ -58,6 +57,9 @@ class _DataScreenState extends State<DataScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: AppColors.mainColor,
       body: CustomScrollView(
@@ -73,7 +75,7 @@ class _DataScreenState extends State<DataScreen> {
                 onSampleUpdated: loadSamples,
               ),
               title: SizedBox(
-                height: MediaQuery.of(context).size.height * 30 / 844,
+                height: height * 30 / 844,
                 child: Directionality(
                   textDirection: TextDirection.ltr,
                   child: TextField(
@@ -90,11 +92,11 @@ class _DataScreenState extends State<DataScreen> {
                           ? IconButton(
                               icon: const CloseButtonIcon(),
                               alignment: Alignment.topRight,
-                              padding: const EdgeInsetsDirectional.symmetric(
-                                vertical: 5,
-                                horizontal: 5,
+                              padding: EdgeInsetsDirectional.symmetric(
+                                vertical: height * 5 / 844,
+                                horizontal: width * 5 / 390,
                               ),
-                              iconSize: 20,
+                              iconSize: height * 20 / 844,
                               onPressed: () {
                                 searchController.clear();
                                 _filterSamples();
@@ -102,8 +104,8 @@ class _DataScreenState extends State<DataScreen> {
                             )
                           : null,
                       suffixIconColor: AppColors.mainColor,
-                      hintStyle: const TextStyle(
-                        fontSize: 12,
+                      hintStyle: TextStyle(
+                        fontSize: height * 12 / 844,
                         color: AppColors.mainColor,
                       ),
                       enabledBorder: OutlineInputBorder(
@@ -128,8 +130,8 @@ class _DataScreenState extends State<DataScreen> {
                   children: <Widget>[
                     Text(
                       widget.title,
-                      style: const TextStyle(
-                        fontSize: 24,
+                      style: TextStyle(
+                        fontSize: height * 24 / 844,
                       ),
                     ),
                     const ReversedBackButton()
@@ -141,7 +143,7 @@ class _DataScreenState extends State<DataScreen> {
           SliverList.builder(
             itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsetsDirectional.all(8),
+                padding: EdgeInsetsDirectional.all(height * 8 / 844),
                 child: AppElevatedButton(
                   onPressed: () {
                     showDialog(

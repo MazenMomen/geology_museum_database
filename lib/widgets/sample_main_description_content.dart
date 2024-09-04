@@ -15,8 +15,9 @@ class SampleMainDescriptionContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 300 / 844,
+      height: height * 300 / 844,
       width: double.infinity,
       child: FittedBox(
         fit: BoxFit.scaleDown,

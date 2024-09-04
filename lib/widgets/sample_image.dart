@@ -14,8 +14,9 @@ class SampleImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return CircleAvatar(
-      radius: MediaQuery.of(context).size.width * 60 / 390,
+      radius: width * 60 / 390,
       backgroundColor: Colors.white,
       backgroundImage: _selectedImage != null
           ? FileImage(_selectedImage)

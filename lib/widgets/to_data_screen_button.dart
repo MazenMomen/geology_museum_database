@@ -28,7 +28,7 @@ class ToDataScreenButton extends StatelessWidget {
         );
       },
       child: mainTitles[i],
-      minimumSize: Size(double.infinity, height * 132 / height),
+      minimumSize: Size(double.infinity, height * 132 / 844),
       fontSize: 25,
       backgroundColor: AppColors.mainColor,
       foregroundColor: Colors.black,

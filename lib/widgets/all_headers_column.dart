@@ -9,22 +9,37 @@ class AllHeadersColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0, 18, 8, 18),
+          padding: EdgeInsetsDirectional.fromSTEB(
+            0,
+            height * 18 / 844,
+            height * 8 / 844,
+            height * 18 / 844,
+          ),
           child: Text(
             mainHeaders[0],
+            style: TextStyle(
+              fontSize: width * 16 / 390,
+            ),
           ),
         ),
         for (int i = 0; i < allHeaders.length; i++)
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0, 18, 8, 18),
+            padding: EdgeInsetsDirectional.fromSTEB(
+              0,
+              height * 18 / 844,
+              height * 8 / 844,
+              height * 18 / 844,
+            ),
             child: Text(
               allHeaders[i],
-              style: const TextStyle(
-                fontSize: 16,
+              style: TextStyle(
+                fontSize: width * 16 / 390,
               ),
             ),
           )

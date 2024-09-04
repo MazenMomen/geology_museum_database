@@ -76,6 +76,8 @@ class _AddAndEditSampleScreenState extends State<AddAndEditSampleScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -104,7 +106,7 @@ class _AddAndEditSampleScreenState extends State<AddAndEditSampleScreen> {
                 ),
                 AddAndEditSampleField(controllers: _controllers),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
+                  padding: EdgeInsets.only(bottom: height * 8 / 844),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
