@@ -66,6 +66,13 @@ class _AddAndEditSampleScreenState extends State<AddAndEditSampleScreen> {
     );
   }
 
+  String? addInitialImage() {
+    if (_sampleData[0] == "") {
+      return null;
+    }
+    return _sampleData[0];
+  }
+
   @override
   void dispose() {
     for (final controller in _controllers) {
@@ -97,7 +104,7 @@ class _AddAndEditSampleScreenState extends State<AddAndEditSampleScreen> {
             delegate: SliverChildListDelegate(
               <Widget>[
                 AddOrChangeSampleImage(
-                  initialImagePath: null,
+                  initialImagePath: addInitialImage(),
                   onImageChanged: (String? path) {
                     setState(() {
                       _sampleData[0] = path;

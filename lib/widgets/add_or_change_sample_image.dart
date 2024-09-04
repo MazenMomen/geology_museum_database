@@ -25,7 +25,7 @@ class _AddOrChangeSampleImageState extends State<AddOrChangeSampleImage> {
   void initState() {
     super.initState();
     if (widget.initialImagePath != null) {
-      _selectedImage = File(widget.initialImagePath!);
+      _selectedImage = File(widget.initialImagePath ?? "assets/logo.png");
     }
   }
 
