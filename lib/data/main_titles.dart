@@ -1,4 +1,4 @@
-List<String> mainTitles = [
+List<String> mainTitles = <String>[
   "Igneous Rocks",
   "Metamorphic Rocks",
   "Sedimentary Rocks",

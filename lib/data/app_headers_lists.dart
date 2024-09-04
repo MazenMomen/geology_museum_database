@@ -1,4 +1,4 @@
-final List<String> mainHeaders = [
+final List<String> mainHeaders = <String>[
   'Sample No:',
   'Showcase No:',
   'Name:',
@@ -7,7 +7,7 @@ final List<String> mainHeaders = [
   'Locality:',
 ];
 
-final List<String> allHeaders = [
+final List<String> allHeaders = <String>[
   mainHeaders[1],
   mainHeaders[2],
   mainHeaders[3],

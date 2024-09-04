@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geology_museum_database/utils/app_colors.dart';
 import 'package:geology_museum_database/widgets/app_elevated_button.dart';
 import '../services/database_service.dart';
+import '../widgets/reversed_back_button.dart';
 import '../widgets/sample_main_description_dialog.dart';
 import '../widgets/to_add_sample_screen_button.dart';
 
@@ -60,7 +61,7 @@ class _DataScreenState extends State<DataScreen> {
     return Scaffold(
       backgroundColor: AppColors.mainColor,
       body: CustomScrollView(
-        slivers: [
+        slivers: <Widget>[
           Directionality(
             textDirection: TextDirection.rtl,
             child: SliverAppBar.medium(
@@ -122,20 +123,16 @@ class _DataScreenState extends State<DataScreen> {
                   ),
                 ),
               ),
-              actions: [
+              actions: <Row>[
                 Row(
-                  children: [
+                  children: <Widget>[
                     Text(
                       widget.title,
                       style: const TextStyle(
                         fontSize: 24,
                       ),
                     ),
-                    IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(Icons.arrow_forward))
+                    const ReversedBackButton()
                   ],
                 )
               ],

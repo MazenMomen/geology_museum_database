@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/to_data_screen_button.dart';
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class MainScreen extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-          children: <Widget>[
+          children: <Expanded>[
             for (int i = 0; i < 5; i++)
               Expanded(
                 child: Padding(

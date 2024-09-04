@@ -7,7 +7,7 @@ class DatabaseService {
   static List<Map<String, dynamic>> get database {
     return (_storage.read(_databaseKey) as List<dynamic>?)
             ?.cast<Map<String, dynamic>>() ??
-        [
+        <Map<String, dynamic>>[
           {
             "categoryName": "Igneous Rocks",
             "data": <List<dynamic>>[],

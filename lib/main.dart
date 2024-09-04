@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geology_museum_database/screens/main_screen.dart';
+import 'package:geology_museum_database/screens/home_screen.dart';
 import 'package:geology_museum_database/utils/app_colors.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
       ),
       debugShowCheckedModeBanner: false,
-      home: const MainScreen(),
+      home: const HomeScreen(),
     );
   }
 }

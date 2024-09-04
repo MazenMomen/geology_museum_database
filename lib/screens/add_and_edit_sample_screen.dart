@@ -4,6 +4,7 @@ import '../data/app_headers_lists.dart';
 import '../data/main_titles.dart';
 import '../services/database_service.dart';
 import '../utils/app_colors.dart';
+import '../widgets/add_and_edit_sample_field.dart';
 import '../widgets/add_or_change_sample_image.dart';
 import '../widgets/app_elevated_button.dart';
 import '../widgets/cancel_button.dart';
@@ -77,7 +78,7 @@ class _AddAndEditSampleScreenState extends State<AddAndEditSampleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
-        slivers: [
+        slivers: <Widget>[
           SliverAppBar(
             backgroundColor: Colors.white,
             foregroundColor: Colors.black,
@@ -92,7 +93,7 @@ class _AddAndEditSampleScreenState extends State<AddAndEditSampleScreen> {
           ),
           SliverList(
             delegate: SliverChildListDelegate(
-              [
+              <Widget>[
                 AddOrChangeSampleImage(
                   initialImagePath: null,
                   onImageChanged: (String? path) {
@@ -101,40 +102,12 @@ class _AddAndEditSampleScreenState extends State<AddAndEditSampleScreen> {
                     });
                   },
                 ),
-                ...List.generate(
-                  allHeaders.length,
-                  (index) => Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      onTapOutside: (event) =>
-                          FocusManager.instance.primaryFocus?.unfocus(),
-                      controller: _controllers[index],
-                      decoration: InputDecoration(
-                        labelText: allHeaders[index],
-                        labelStyle: const TextStyle(color: Colors.black),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: const BorderSide(
-                            color: Colors.black,
-                            width: 1,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: const BorderSide(
-                            color: AppColors.mainColor,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                AddAndEditSampleField(controllers: _controllers),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
+                    children: <Widget>[
                       AppElevatedButton(
                         onPressed: _saveSample,
                         child: widget.buttonFunctionality,
